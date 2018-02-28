@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import { findDOMNode } from "react-dom";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
-
 
 import {
   AppBar,
@@ -13,6 +13,7 @@ import {
   SvgIcon,
   Badge,
   Divider,
+  Popover,
  } from "material-ui";
 import List, {ListItem, ListItemIcon, ListItemText} from "material-ui/List";
 import { withStyles } from "material-ui/styles";
@@ -30,6 +31,9 @@ const styles = {
   hamburger: {
     marginRight: -12,
   },
+  typography: {
+    margin: 10,
+  }
 };
 
 const titles = {
@@ -52,7 +56,11 @@ const links = [
 class NavigationBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {drawerOpen  : false};
+    this.state = {
+      drawerOpen  : false,
+      popoverOpen  : false,
+      anchorEl: null,
+    };
   }
 
   toggleDrawer = (e) => {
@@ -60,14 +68,38 @@ class NavigationBar extends Component {
   }
 
   handleNotification = (e) => {
-    console.log(e);
+    this.setState({
+      popoverOpen: true,
+      anchorEl: findDOMNode(this),
+    });
+  }
+
+  handlePopoverClose = (e) => {
+    this.setState({
+      popoverOpen: false,
+    });
   }
 
   render = () => {
-    console.log(treadmill);
     const classes = this.props.classes;
     return (
       <div>
+        <Popover
+          open={this.state.popoverOpen}
+          anchorEl={this.state.anchorEl}
+          anchorReference="anchorEl"
+          onClose={this.handlePopoverClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+        >
+          <Typography className={classes.typography}>The content of the Popover.</Typography>
+        </Popover>
         <Drawer
           anchor="right"
           open={this.state.drawerOpen}
@@ -92,7 +124,7 @@ class NavigationBar extends Component {
               {titles[this.props.location.pathname]}
             </Typography>
             <IconButton onClick={this.handleNotification} color="inherit">
-              <Badge badgeContent={2} onClick={this.handleNotification} color="secondary">
+              <Badge badgeContent={2} color="secondary">
                 <Notifications />
               </Badge>
             </IconButton>
