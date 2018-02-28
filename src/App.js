@@ -7,6 +7,9 @@ import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
 import NavigationBar from "./components/menus/NavigationBar";
 import Dashboard from "./components/Dashboard";
 import Reserve from "./components/Reserve";
+import MyReservations from "./components/MyReservations";
+import Settings from "./components/Settings";
+import Membership from "./components/Membership";
 import './App.css';
 
 const theme = createMuiTheme();
@@ -19,8 +22,11 @@ class App extends Component {
           <div>
             <Reboot />
             <NavigationBar />
-            <Route exact path="/" component={Dashboard} page="Dashboard"/>} />
-            <Route exact path="/reserve" render={props => <Reserve page="Reserve" />} />
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/reserve" component={Reserve} />
+            <Route exact path="/my-reservations" component={MyReservations} />
+            <Route exact path="/settings" component={Settings} />
+            <Route exact path="/membership" component={Membership} />
           </div>
         </BrowserRouter>
       // </MuiThemeProvider>
