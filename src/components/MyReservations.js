@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { AppBar, Card, CardContent, Typography,
    Grid, List, ListItem, ListItemText,
    Tabs, Tab, TabContainer, Button, MenuItem, Select } from "material-ui";
-import MachineSelectDialog from "./MachineSelectDialog";
+import ReservationModifyDialog from "./ReservationModifyDialog";
 import { machines, machineTypes} from "../fakeData";
 import floorMap from "../floor.png"
 
@@ -14,12 +14,12 @@ class MachineList extends Component {
         {this.props.machines.map(m => {
           return (
             <Button
-              onClick={(e) => this.handleReservationModify(e, m.id)}
+              onClick={(e) => this.props.onMachineClick(e, m.id)}
               key={m.id}
               style={{padding: 3, textAlign: "left", textTransform: "None"}}>
               <Card>
                 <CardContent>
-                  <Grid container spacing={0}>
+                  <Grid container spacing={0} justify="center" alignItems="center">
                     <Grid item xs={4}>
                       <img alt="machine" src={machineTypes[m.type]} style={{width: "90%"}}/>
                     </Grid>
@@ -64,17 +64,17 @@ class MyReservations extends Component {
       dialogOpen: false,
       selectedMachine: machines[0]
     };
-    Object.keys(machineTypes).forEach((m, i) => {
-      this.state.machineTypes[i] = {m: false};
-    });
-    this.state.machineTypes[machineTypes.length-1] = true;
   }
 
-  handleReservationModify(e, id) {
+  handleReservationModify = (e, id) => {
     this.setState({
       dialogOpen: true,
       selectedMachine: machines.filter(m => m.id === id)[0]
     });
+  }
+
+  handleDialogClose = () => {
+    this.setState({dialogOpen: false});
   }
 
   handleTabChange = (e, val) => {
@@ -97,9 +97,8 @@ class MyReservations extends Component {
             <Tab label="History" />
           </Tabs>
         </AppBar>
-        <Grid container style={{marginTop: 110}} spacing={0}>
-          <Grid xs={8} item></Grid>
-          <Grid xs={4} item>
+        <Grid container style={{marginTop: 110}} spacing={0} justify="flex-end">
+          <Grid item>
             <Select
               value="Most recent"
               displayEmpty
@@ -113,14 +112,19 @@ class MyReservations extends Component {
             </Select>
           </Grid>
           <Grid xs={12} item>
-            {this.state.currentTab === 0 && <MachineList machines={JSON.parse(localStorage.getItem("reservations"))}/>}
+            {this.state.currentTab === 0 &&
+              <MachineList
+                machines={JSON.parse(localStorage.getItem("reservations"))}
+                onMachineClick={this.handleReservationModify}
+              />}
             {this.state.currentTab === 1 &&
-              <div style={{paddingTop: 3}}>
-                <img onClick={() => this.setState({dialogOpen: true})} alt="ss" src={floorMap} width="100%"/>
-              </div>}
+              <MachineList
+                machines={machines}
+                onMachineClick={() => {}}
+              />}
           </Grid>
         </Grid>
-        <MachineSelectDialog
+        <ReservationModifyDialog
           open={this.state.dialogOpen}
           handleDialogClose={this.handleDialogClose}
           machine={this.state.selectedMachine}
