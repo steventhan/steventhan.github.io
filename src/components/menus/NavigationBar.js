@@ -20,7 +20,7 @@ import {ListItem, ListItemIcon, ListItemText} from "material-ui/List";
 import { withStyles } from "material-ui/styles";
 import MenuIcon from 'material-ui-icons/Menu';
 import { Dashboard, Assignment, Settings, Person, Notifications } from 'material-ui-icons';
-import AddIcon from 'material-ui-icons/Add';
+
 
 import FloatingButtonDialog from "./FloatingButtonDialog";
 import treadmill from "../../treadmill.svg";
@@ -50,19 +50,22 @@ const styles = {
 };
 
 const titles = {
-  "/": "Dashboard",
+  "/dashboard": "Dashboard",
   "/reserve": "Reserve",
   "/my-reservations": "My reservations",
   "/settings" : "Settings",
   "/membership" : "Membership",
+  "/" : "Login",
 }
 
 const links = [
-  {path: "/", name: "Dashboard", icon: <Dashboard />},
+
+  {path: "/dashboard", name: "Dashboard", icon: <Dashboard />},
   {path: "/reserve", name: "Reserve", icon: <img alt="ss" src={treadmill} />},
   {path: "/my-reservations", name: "My reservations", icon: <Assignment />},
   {path: "/settings", name: "Settings", icon: <Settings />},
   {path: "/membership", name: "Membership", icon: <Person />},
+   {path: "/", name: "Logout", icon: <Person />},
 ]
 
 class UserProfile extends Component {
