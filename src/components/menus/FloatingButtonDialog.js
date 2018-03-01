@@ -11,6 +11,8 @@ import Dialog, {
   withMobileDialog,
 } from 'material-ui/Dialog';
 
+import { Up } from "../UtilComponents";
+
 import bikeImg from "../../bike-real.jpg";
 import ellipticalImg from "../../elliptical-real.jpg";
 import stepmillImg from "../../stepmill-real.jpg";
@@ -40,6 +42,7 @@ class FloatingButtonDialog extends Component {
         open={this.props.open}
         onClose={this.props.handleDialogClose}
         aria-labelledby="responsive-dialog-title"
+        transition={Up}
       >
         <DialogTitle id="responsive-dialog-title">
           <strong>Choose machine type</strong>

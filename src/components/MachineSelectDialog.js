@@ -10,6 +10,7 @@ import Dialog, {
   withMobileDialog,
 } from 'material-ui/Dialog';
 
+import { Up } from "./UtilComponents";
 import { machineTypes, evalStatus } from "../fakeData"
 
 class MachineSelectDialog extends Component {
@@ -32,9 +33,10 @@ class MachineSelectDialog extends Component {
         open={this.props.open}
         onClose={this.props.handleDialogClose}
         aria-labelledby="responsive-dialog-title"
+        transition={Up}
       >
         <DialogTitle id="responsive-dialog-title">
-            <strong>Machine Information</strong>
+            <strong>Machine information</strong>
         </DialogTitle>
         <DialogContent>
           <Grid container justify="center">
