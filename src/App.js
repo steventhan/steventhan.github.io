@@ -18,6 +18,7 @@ const theme = createMuiTheme();
 class App extends Component {
   render() {
     localStorage.setItem("reservations", JSON.stringify([]));
+    localStorage.setItem("notifications", JSON.stringify([]));
     return (
       // <MuiThemeProvider theme={theme}>
         <BrowserRouter>
