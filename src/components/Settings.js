@@ -46,68 +46,63 @@ class Settings extends Component {
 
 
     return (
-      //<Grid>Settings</Grid>
       <div className={classes}>
-     <Grid container justify="center" style={{marginTop: 70}}  spacing={24}>
+     <Grid container justify="center" style={{marginTop: 70}}  spacing={0}>
        <Grid item xs={12}  >
          <Paper  style={{height: 40}} className={paper}>Notify 15 minutes before reservation
+           <Select style={{position: 'absolute', right: 0}}
+              value={this.state.answer1}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'answer1',
+                id: 'answer1-simple',
+              }}>
 
-         <Select style={{position: 'absolute', right: 0}}
-            value={this.state.answer1}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'answer1',
-              id: 'answer1-simple',
-            }}>
-
-            <MenuItem value={10}>Yes</MenuItem>
-            <MenuItem value={20}>No</MenuItem>
+              <MenuItem value={10}>Yes</MenuItem>
+              <MenuItem value={20}>No</MenuItem>
           </Select>
          </Paper>
-
-
-
        </Grid>
 
        <Grid item xs={12} sm={6}>
          <Paper style={{height: 40}} className={paper}>Play sound for notifications
-         <Select style={{position: 'absolute', right: 0}}
-            value={this.state.answer2}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'answer2',
-              id: 'answer2-simple',
-            }}>
-            <MenuItem value={10}>Yes</MenuItem>
-            <MenuItem value={20}>No</MenuItem>
+           <Select style={{position: 'absolute', right: 0}}
+              value={this.state.answer2}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'answer2',
+                id: 'answer2-simple',
+              }}>
+              <MenuItem value={10}>Yes</MenuItem>
+              <MenuItem value={20}>No</MenuItem>
           </Select>
          </Paper>
        </Grid>
        <Grid item xs={12} sm={6}>
          <Paper style={{height: 40}} className={paper}>Allow the app to track workout
-         <Select style={{position: 'absolute', right: 0}}
-            value={this.state.answer3}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'answer3',
-              id: 'answer3-simple',
-            }}>
-            <MenuItem value={10}>Yes</MenuItem>
-            <MenuItem value={20}>No</MenuItem>
+           <Select style={{position: 'absolute', right: 0}}
+              value={this.state.answer3}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'answer3',
+                id: 'answer3-simple',
+              }}>
+              <MenuItem value={10}>Yes</MenuItem>
+              <MenuItem value={20}>No</MenuItem>
           </Select>
          </Paper>
        </Grid>
        <Grid item xs={12} sm={6}>
          <Paper style={{height: 40}} className={paper}>Share location Information
-         <Select style={{position: 'absolute', right: 0}}
-            value={this.state.answer4}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'answer4',
-              id: 'answer4-simple',
-            }}>
-            <MenuItem value={10}>Yes</MenuItem>
-            <MenuItem value={20}>No</MenuItem>
+           <Select style={{position: 'absolute', right: 0}}
+              value={this.state.answer4}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'answer4',
+                id: 'answer4-simple',
+              }}>
+              <MenuItem value={10}>Yes</MenuItem>
+              <MenuItem value={20}>No</MenuItem>
           </Select>
          </Paper>
        </Grid>

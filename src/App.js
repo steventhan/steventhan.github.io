@@ -149,7 +149,7 @@ class App extends Component {
             <Route exact path="/" component={Login} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/reserve" render={() => <Reserve sendSnackbarMsg={this.sendSnackbarMsg}/>} />
-            <Route exact path="/my-reservations" component={MyReservations} />
+            <Route exact path="/my-reservations" render={() => <MyReservations sendSnackbarMsg={this.sendSnackbarMsg}/>} />
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/membership" component={Membership} />
           </div>

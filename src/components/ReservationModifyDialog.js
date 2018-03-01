@@ -25,12 +25,12 @@ class ReservationModifyDialog extends Component {
   }
 
   handleSave = (e) => {
+    this.props.sendSnackbarMsg("Saved");
     this.props.handleDialogClose(e);
   }
 
   handleCancel = (e) => {
     let revs = JSON.parse(localStorage.getItem("reservations"));
-    console.log(revs);
     localStorage.setItem("reservations", JSON.stringify(revs.filter(r => r.id !== this.props.machine.id)));
     this.props.handleDialogClose(e);
   }
