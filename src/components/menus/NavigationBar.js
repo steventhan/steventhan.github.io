@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars*/
 import React, { Component } from "react";
-import { findDOMNode } from "react-dom";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 
@@ -11,6 +11,7 @@ import {
   Toolbar,
   Grid,
   Typography,
+  Snackbar,
   IconButton,
   Badge,
   Divider,
@@ -26,7 +27,6 @@ import FloatingButtonDialog from "./FloatingButtonDialog";
 import treadmill from "../../treadmill.svg";
 import heisenberg from "../../heisenberg.jpg";
 import qrcode from "../../qrcode.png";
-import startWorkout from "../../start-workout.png";
 
 const styles = {
   root: {
@@ -112,10 +112,7 @@ class NavigationBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      drawerOpen  : false,
-      popoverOpen  : false,
-      floatingButtonDialogOpen  : false,
-      anchorEl: null,
+      drawerOpen: false,
     };
   }
 
@@ -123,47 +120,14 @@ class NavigationBar extends Component {
     this.setState({drawerOpen: !this.state.drawerOpen});
   }
 
-  handleNotification = (e) => {
-    this.setState({
-      popoverOpen: true,
-      anchorEl: findDOMNode(this.notiIcon),
-    });
-  }
-
-  handlePopoverClose = (e) => {
-    this.setState({
-      popoverOpen: false,
-    });
-  }
-
-  handleFloatingButton = (e) => {
-    this.setState({floatingButtonDialogOpen : true});
-  }
-
-  handleFloatingButtonDialogClose = (e) => {
-    this.setState({floatingButtonDialogOpen : false});
+  handleNotificationClick = (e) => {
+    this.props.onNotificationClick(this.notiIcon);
   }
 
   render = () => {
     const classes = this.props.classes;
     return (
       <div>
-        <Popover
-          open={this.state.popoverOpen}
-          anchorEl={this.state.anchorEl}
-          anchorReference="anchorEl"
-          onClose={this.handlePopoverClose}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-        >
-          <Typography className={classes.typography}>The content of the Popover.</Typography>
-        </Popover>
         <Drawer
           anchor="right"
           open={this.state.drawerOpen}
@@ -194,7 +158,7 @@ class NavigationBar extends Component {
               ref={node => {
                 this.notiIcon = node;
               }}
-              onClick={this.handleNotification} color="inherit">
+              onClick={this.handleNotificationClick} color="inherit">
               <Badge badgeContent={2} color="secondary">
                 <Notifications />
               </Badge>
@@ -205,13 +169,6 @@ class NavigationBar extends Component {
           </Toolbar>
         </AppBar>
 
-        <Button onClick={this.handleFloatingButton} variant="fab" color="primary" aria-label="add" className={classes.float}>
-          <img src={startWorkout} alt="ss" width="65%" />
-        </Button>
-        <FloatingButtonDialog
-          open={this.state.floatingButtonDialogOpen}
-          handleDialogClose={this.handleFloatingButtonDialogClose}
-        />
       </div>
     );
   }

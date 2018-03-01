@@ -128,6 +128,7 @@ class MyReservations extends Component {
           open={this.state.dialogOpen}
           handleDialogClose={this.handleDialogClose}
           machine={this.state.selectedMachine}
+          sendSnackbarMsg={this.props.sendSnackbarMsg}
         />
       </div>
     )

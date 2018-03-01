@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars*/
 import React, { Component } from "react";
+import { findDOMNode } from "react-dom";
 import { BrowserRouter, Route} from "react-router-dom";
-import Reboot from "material-ui/Reboot";
-import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
+import { IconButton, Popover, Typography, Button, Reboot, Snackbar } from "material-ui";
+import CloseIcon from "material-ui-icons/Close";
+import { MuiThemeProvider, createMuiTheme, withStyles } from "material-ui/styles";
 
 
 import NavigationBar from "./components/menus/NavigationBar";
@@ -12,23 +14,141 @@ import MyReservations from "./components/MyReservations";
 import Settings from "./components/Settings";
 import Membership from "./components/Membership";
 import Login from "./components/Login";
+import FloatingButtonDialog from "./components/menus/FloatingButtonDialog";
+import startWorkout from "./start-workout.png";
 import './App.css';
 
 const theme = createMuiTheme();
 
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+  flex: {
+    flex: 1,
+  },
+  hamburger: {
+    marginRight: -12,
+  },
+  typography: {
+    margin: 10,
+  },
+  float: {
+    position: "fixed",
+    bottom: 15,
+    right: 15,
+    zIndex: 100,
+  }
+};
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      snackbarOpen : false,
+      snackbarMsg : "",
+      snackbarAction : {label: "", link: ""},
+      floatingButtonDialogOpen : false,
+      popoverOpen: false,
+      anchorEl: null,
+    };
+  }
+
+  handleNotification = (anchor) => {
+    this.setState({
+      popoverOpen: true,
+      anchorEl: findDOMNode(anchor),
+    });
+  }
+
+  handlePopoverClose = (e) => {
+    this.setState({
+      popoverOpen: false,
+    });
+  }
+
+  handleFloatingButton = (e) => {
+    this.setState({floatingButtonDialogOpen : true});
+  }
+
+  handleFloatingButtonDialogClose = (e) => {
+    this.setState({floatingButtonDialogOpen : false});
+  }
+
+  handleSnackbarClose = (e) => {
+    this.setState({
+      snackbarOpen: false,
+    });
+  }
+
+  sendSnackbarMsg = (msg, opts) => {
+    this.setState({
+      snackbarOpen: true,
+      snackbarMsg: msg,
+      snackbarAction: {
+        label: opts && opts.hasOwnProperty("label") ? opts.label : "",
+        link: opts && opts.hasOwnProperty("link") ? opts.link : ""
+      }
+    });
+  }
+
   render() {
-    localStorage.setItem("reservations", JSON.stringify([]));
-    localStorage.setItem("notifications", JSON.stringify([]));
+    const classes = this.props.classes;
     return (
       // <MuiThemeProvider theme={theme}>
         <BrowserRouter>
           <div>
             <Reboot />
-            <NavigationBar />
+            <NavigationBar onNotificationClick={this.handleNotification}/>
+            <Popover
+              open={this.state.popoverOpen}
+              anchorEl={this.state.anchorEl}
+              anchorReference="anchorEl"
+              onClose={this.handlePopoverClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+            >
+              <Typography>The content of the Popover.</Typography>
+            </Popover>
+            <Button
+              style={this.state.snackbarOpen ? {display: "none"} : {}}
+              onClick={this.handleFloatingButton}
+              variant="fab" color="primary" className={classes.float}>
+              <img src={startWorkout} alt="ss" width="65%" />
+            </Button>
+            <FloatingButtonDialog
+              open={this.state.floatingButtonDialogOpen}
+              handleDialogClose={this.handleFloatingButtonDialogClose}
+            />
+            <Snackbar
+              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+              open={this.state.snackbarOpen}
+              autoHideDuration={5000}
+              onClose={this.handleSnackbarClose}
+              message={<span id="message-id">{this.state.snackbarMsg}</span>}
+              action={[
+                <Button key="action" color="secondary" size="small" onClick={this.handleClose}>
+                  {this.state.snackbarAction.label}
+                </Button>,
+                <IconButton
+                  key="close"
+                  aria-label="Close"
+                  color="inherit"
+                  onClick={this.handleSnackbarClose}
+                >
+                  <CloseIcon />
+                </IconButton>,
+              ]}
+            />
             <Route exact path="/" component={Login} />
             <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/reserve" component={Reserve} />
+            <Route exact path="/reserve" render={() => <Reserve sendSnackbarMsg={this.sendSnackbarMsg}/>} />
             <Route exact path="/my-reservations" component={MyReservations} />
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/membership" component={Membership} />
@@ -39,4 +159,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withStyles(styles)(App);

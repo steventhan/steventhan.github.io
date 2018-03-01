@@ -10,6 +10,7 @@ import Dialog, {
   withMobileDialog,
 } from 'material-ui/Dialog';
 
+import { Up } from "./UtilComponents";
 import { machineTypes, evalStatus } from "../fakeData"
 
 class MachineSelectDialog extends Component {
@@ -32,9 +33,10 @@ class MachineSelectDialog extends Component {
         open={this.props.open}
         onClose={this.props.handleDialogClose}
         aria-labelledby="responsive-dialog-title"
+        transition={Up}
       >
         <DialogTitle id="responsive-dialog-title">
-            <strong>Machine Information</strong>
+            <strong>Machine information</strong>
         </DialogTitle>
         <DialogContent>
           <Grid container justify="center">
@@ -112,7 +114,8 @@ class MachineSelectDialog extends Component {
             let revs = JSON.parse(localStorage.getItem("reservations"));
             revs.push(this.props.machine);
             localStorage.setItem("reservations", JSON.stringify(revs));
-            return this.props.handleDialogClose(e);
+            this.props.handleDialogClose(e);
+            this.props.sendSnackbarMsg("Reserved", {"label": "View"});
           }} variant="raised" color="primary" autoFocus>
             Reserve
           </Button>

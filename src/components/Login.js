@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars*/
+
 import React, { Component } from 'react';
 import {Container, Form, Header } from 'semantic-ui-react';
 import { Divider, InputAdornment, Input, InputLabel,
@@ -21,17 +23,12 @@ class Login extends Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit() {
-  const { username, password } = this.state;
-  //should be doing post to backend
-  // somehow this does not get updated in time before it git axios
-
-
-
+    const { username, password } = this.state;
+    //should be doing post to backend
+    // somehow this does not get updated in time before it git axios
       window.location.href = '/dashboard';// change the history path, to reroute (hack)
       window.localStorage['isLoggedIn'] = true;
-
   }
-
 
   render() {
     const username = this.state.username;
@@ -62,14 +59,8 @@ class Login extends Component {
             </Button>
             </Form.Button>
             </div>
-
-
-
           </Form>
-
-
         </Container>
-
     );
   }
 }
