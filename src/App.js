@@ -13,12 +13,9 @@ import Reserve from "./components/Reserve";
 import MyReservations from "./components/MyReservations";
 import Settings from "./components/Settings";
 import Membership from "./components/Membership";
-<<<<<<< Updated upstream
 import Login from "./components/Login";
-=======
 import FloatingButtonDialog from "./components/menus/FloatingButtonDialog";
 import startWorkout from "./start-workout.png";
->>>>>>> Stashed changes
 import './App.css';
 
 const theme = createMuiTheme();
@@ -136,7 +133,7 @@ class App extends Component {
               onClose={this.handleSnackbarClose}
               message={<span id="message-id">{this.state.snackbarMsg}</span>}
               action={[
-                <Button color="secondary" size="small" onClick={this.handleClose}>
+                <Button key="action" color="secondary" size="small" onClick={this.handleClose}>
                   {this.state.snackbarAction.label}
                 </Button>,
                 <IconButton
