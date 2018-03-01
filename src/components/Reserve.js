@@ -9,13 +9,7 @@ import MachineSelectDialog from "./MachineSelectDialog";
 import { machines, machineTypes, evalStatus } from "../fakeData";
 import floorMap from "../floor.png"
 
-
-
-
-const styles = {
-  tabs: {
-  }
-}
+const styles = {};
 
 class Reserve extends Component {
   constructor(props) {
@@ -64,9 +58,8 @@ class Reserve extends Component {
             <Tab label="Floor View" />
           </Tabs>
         </AppBar>
-        <Grid container style={{marginTop: 110}} spacing={0}>
-          <Grid xs={10} item></Grid>
-          <Grid xs={2} item>
+        <Grid container style={{marginTop: 110}} spacing={0} justify="flex-end">
+          <Grid item style={{paddingRight: 5}}>
             <Select
               value="All"
               displayEmpty
@@ -82,7 +75,11 @@ class Reserve extends Component {
           <Grid xs={12} item>
             {this.state.currentTab === 0 &&
               <List>
-                {machines.map(m => {
+                {machines.filter(m => {
+                  return !JSON.parse(localStorage.getItem("reservations")).reduce((prev, cur) => {
+                    return prev || cur.id === m.id;
+                  }, false);
+                }).map(m => {
                   return (
                     <Button
                       onClick={(e) => this.handleMachineSelection(e, m.id)}
