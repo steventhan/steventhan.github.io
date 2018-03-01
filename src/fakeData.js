@@ -3,42 +3,42 @@ import bike from "./bike.png";
 import elliptical from "./elliptical.png";
 
 const machineTypes = {
-  "Bikes": bike,
-  "Elliptical machines": elliptical,
-  "Pull-up machines": "",
-  "Stepmills": "",
-  "Treadmills": treadmill,
+  "Bike": bike,
+  "Elliptical": elliptical,
+  "Pull-up": "",
+  "Stepmill": "",
+  "Treadmill": treadmill,
   "All": "",
 };
 
 const machines = [
   {
     id: 101,
-    type: "Elliptical machines",
+    type: "Elliptical",
     queueSize: 3,
     description: "This machine is located on the second floor near the water fountain",
   },
   {
     id: 102,
-    type: "Bikes",
+    type: "Bike",
     queueSize: 2,
     description: "This machine is located on the second floor near the water fountain",
   },
   {
     id: 103,
-    type: "Treadmills",
+    type: "Treadmill",
     queueSize: 0,
     description: "This machine is located on the second floor near the water fountain",
   },
   {
     id: 202,
-    type: "Bikes",
+    type: "Bike",
     queueSize: 3,
     description: "This machine is located on the second floor near the water fountain",
   },
   {
     id: 203,
-    type: "Treadmills",
+    type: "Treadmill",
     queueSize: 10,
     description: "This machine is located on the second floor near the water fountain",
   }
