@@ -6,6 +6,7 @@ import { withRouter } from "react-router";
 import {
   AppBar,
   Avatar,
+  Button,
   Drawer,
   Toolbar,
   Grid,
@@ -19,9 +20,13 @@ import {ListItem, ListItemIcon, ListItemText} from "material-ui/List";
 import { withStyles } from "material-ui/styles";
 import MenuIcon from 'material-ui-icons/Menu';
 import { Dashboard, Assignment, Settings, Person, Notifications } from 'material-ui-icons';
+import AddIcon from 'material-ui-icons/Add';
+
+import FloatingButtonDialog from "./FloatingButtonDialog";
 import treadmill from "../../treadmill.svg";
 import heisenberg from "../../heisenberg.jpg";
 import qrcode from "../../qrcode.png";
+import startWorkout from "../../start-workout.png";
 
 const styles = {
   root: {
@@ -35,6 +40,12 @@ const styles = {
   },
   typography: {
     margin: 10,
+  },
+  float: {
+    position: "fixed",
+    bottom: 15,
+    right: 15,
+    zIndex: 100,
   }
 };
 
@@ -57,10 +68,15 @@ const links = [
 class UserProfile extends Component {
   render = () => {
     return (
-      <Grid container justify="center" spacing={0} style={{marginTop: "10%", marginBottom: "5%"}}>
-        <Grid item>
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        spacing={0}>
+        <Grid item style={{paddingTop: "12%", paddingBottom: "10%"}}>
           <Avatar alt="heisenberg" style={{width: 100, height: 100}} src={heisenberg} />
-          <Typography style={{paddingLeft: 10, paddingTop: 10}} variant="body1">Walter White</Typography>
+          <Typography style={{paddingLeft: 10}} variant="body1">Walter White</Typography>
         </Grid>
       </Grid>
     );
@@ -72,8 +88,13 @@ class UserProfile extends Component {
 class QRCode extends Component {
   render = () => {
     return (
-      <Grid container justify="center" spacing={0} style={{marginTop: "20%"}}>
-        <Grid item>
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        spacing={0}
+        alignItems="center">
+        <Grid item style={{paddingTop: "15%", paddingBottom: "10%"}}>
           <img alt="qr" style={{width: 100, height: 100}} src={qrcode} />
           <Typography style={{paddingLeft: 5}} variant="body1">Your QR code</Typography>
         </Grid>
@@ -83,12 +104,14 @@ class QRCode extends Component {
 
 }
 
+
 class NavigationBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       drawerOpen  : false,
       popoverOpen  : false,
+      floatingButtonDialogOpen  : false,
       anchorEl: null,
     };
   }
@@ -100,7 +123,7 @@ class NavigationBar extends Component {
   handleNotification = (e) => {
     this.setState({
       popoverOpen: true,
-      anchorEl: findDOMNode(this),
+      anchorEl: findDOMNode(this.notiIcon),
     });
   }
 
@@ -108,6 +131,14 @@ class NavigationBar extends Component {
     this.setState({
       popoverOpen: false,
     });
+  }
+
+  handleFloatingButton = (e) => {
+    this.setState({floatingButtonDialogOpen : true});
+  }
+
+  handleFloatingButtonDialogClose = (e) => {
+    this.setState({floatingButtonDialogOpen : false});
   }
 
   render = () => {
@@ -150,12 +181,17 @@ class NavigationBar extends Component {
           <Divider />
           <QRCode />
         </Drawer>
+
         <AppBar className={classes.root}>
           <Toolbar>
             <Typography color="inherit" variant="title" className={classes.flex}>
               <strong>{titles[this.props.location.pathname]}</strong>
             </Typography>
-            <IconButton onClick={this.handleNotification} color="inherit">
+            <IconButton
+              ref={node => {
+                this.notiIcon = node;
+              }}
+              onClick={this.handleNotification} color="inherit">
               <Badge badgeContent={2} color="secondary">
                 <Notifications />
               </Badge>
@@ -165,6 +201,14 @@ class NavigationBar extends Component {
             </IconButton>
           </Toolbar>
         </AppBar>
+
+        <Button onClick={this.handleFloatingButton} variant="fab" color="primary" aria-label="add" className={classes.float}>
+          <img src={startWorkout} alt="ss" width="65%" />
+        </Button>
+        <FloatingButtonDialog
+          open={this.state.floatingButtonDialogOpen}
+          handleDialogClose={this.handleFloatingButtonDialogClose}
+        />
       </div>
     );
   }
