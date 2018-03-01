@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars*/
 import React, { Component } from 'react';
 import { Divider, InputAdornment, Input, InputLabel,
-  Button, Typography, Grid, Radio, TextField, FormControlLabel } from 'material-ui';
+  Button, Typography, Grid, Radio, TextField, FormControlLabel } from "material-ui";
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -115,7 +115,7 @@ class MachineSelectDialog extends Component {
             revs.push(this.props.machine);
             localStorage.setItem("reservations", JSON.stringify(revs));
             this.props.handleDialogClose(e);
-            this.props.sendSnackbarMsg("Reserved", {"label": "View"});
+            this.props.sendSnackbarMsg("Reserved", {label: "View", link: "/my-reservations"});
           }} variant="raised" color="primary" autoFocus>
             Reserve
           </Button>

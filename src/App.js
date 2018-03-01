@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars*/
 import React, { Component } from "react";
 import { findDOMNode } from "react-dom";
-import { BrowserRouter, Route} from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import { IconButton, Popover, Typography, Button, Reboot, Snackbar } from "material-ui";
 import CloseIcon from "material-ui-icons/Close";
 import { MuiThemeProvider, createMuiTheme, withStyles } from "material-ui/styles";
@@ -133,7 +133,13 @@ class App extends Component {
               onClose={this.handleSnackbarClose}
               message={<span id="message-id">{this.state.snackbarMsg}</span>}
               action={[
-                <Button key="action" color="secondary" size="small" onClick={this.handleClose}>
+                <Button
+                  key="action"
+                  component={Link}
+                  color="secondary"
+                  size="small"
+                  to={this.state.snackbarAction.link}
+                  onClick={this.handleClose}>
                   {this.state.snackbarAction.label}
                 </Button>,
                 <IconButton
