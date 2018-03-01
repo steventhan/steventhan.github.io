@@ -31,7 +31,7 @@ class Dashboard extends Component {
                   <InfoOutline />
                 </ListItemIcon>
                 <Typography color="inherit" variant="title">
-                  <ListItemText disableTypography primary="You gym status" />
+                  <strong><ListItemText disableTypography primary="You gym status" /></strong>
                 </Typography>
               </ListItem>
               <Divider />
@@ -57,7 +57,7 @@ class Dashboard extends Component {
                   <Announcement />
                 </ListItemIcon>
                 <Typography color="inherit" variant="title">
-                  <ListItemText disableTypography primary="Announcement" />
+                  <strong><ListItemText disableTypography primary="Announcement" /></strong>
                 </Typography>
               </ListItem>
               <Divider />

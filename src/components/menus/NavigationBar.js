@@ -153,7 +153,7 @@ class NavigationBar extends Component {
         <AppBar className={classes.root}>
           <Toolbar>
             <Typography color="inherit" variant="title" className={classes.flex}>
-              {titles[this.props.location.pathname]}
+              <strong>{titles[this.props.location.pathname]}</strong>
             </Typography>
             <IconButton onClick={this.handleNotification} color="inherit">
               <Badge badgeContent={2} color="secondary">

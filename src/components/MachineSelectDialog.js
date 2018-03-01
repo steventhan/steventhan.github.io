@@ -35,9 +35,7 @@ class MachineSelectDialog extends Component {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          <Typography variant="headline">
-            Machine Information
-          </Typography>
+            <strong>Machine Information</strong>
         </DialogTitle>
         <DialogContent>
           <Grid container>
@@ -61,7 +59,7 @@ class MachineSelectDialog extends Component {
 
             <Grid container>
               <Grid item xs={12}>
-                <Typography variant="title">Description</Typography>
+                <Typography variant="subheading"><strong>Description</strong></Typography>
                 <Divider/>
                 <Typography style={{paddingTop: 10, paddingBottom: 10}} component="p">
                   {`${this.props.machine.description}`}
@@ -71,7 +69,7 @@ class MachineSelectDialog extends Component {
             </Grid>
 
             <Grid style={{marginTop: 12}} container justify="center">
-              <Grid item xs={10} alignContent="center">
+              <Grid item xs={10}>
                 <FormControlLabel
                   control={
                     <Radio
@@ -98,8 +96,8 @@ class MachineSelectDialog extends Component {
                   id="time" type="time" />
               </Grid>
             </Grid>
-            <Grid container justify="center">
-              <Grid item xs={10} alignContent="center">
+            <Grid container justify="center" alignContent="center">
+              <Grid item xs={10}>
                 <InputLabel htmlFor="duration">Duration</InputLabel>
                 <Input
                   value={20}
@@ -111,7 +109,7 @@ class MachineSelectDialog extends Component {
 
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.props.handleDialogClose} variant="raised" color="primary">
+          <Button onClick={this.props.handleDialogClose} variant="raised" color="default">
             Cancel
           </Button>
           <Button onClick={(e) => {

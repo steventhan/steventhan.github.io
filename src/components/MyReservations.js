@@ -105,9 +105,9 @@ class MyReservations extends Component {
               displayEmpty
               name="sort"
             >
-              {["Most recent", "Oldest"].map(sort => {
+              {["Most recent", "Oldest"].map((sort, i) => {
                 return (
-                  <MenuItem value={sort}>{sort}</MenuItem>
+                  <MenuItem key={i} value={sort}>{sort}</MenuItem>
                 );
               })}
             </Select>
