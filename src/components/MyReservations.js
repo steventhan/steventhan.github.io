@@ -1,11 +1,10 @@
+/* eslint-disable no-unused-vars*/
 import React, { Component } from "react";
 import { AppBar, Card, CardContent, Typography,
-   Grid, Paper, List, ListItem, ListItemText,
+   Grid, List, ListItem, ListItemText,
    Tabs, Tab, TabContainer, Button, MenuItem, Select } from "material-ui";
-import { withStyles } from "material-ui/styles";
-import { FileUpload } from "material-ui-icons";
 import MachineSelectDialog from "./MachineSelectDialog";
-import { machines, machineTypes, evalStatus } from "../fakeData";
+import { machines, machineTypes} from "../fakeData";
 import floorMap from "../floor.png"
 
 class MachineList extends Component {
@@ -22,7 +21,7 @@ class MachineList extends Component {
                 <CardContent>
                   <Grid container spacing={0}>
                     <Grid item xs={4}>
-                      <img src={machineTypes[m.type]} style={{width: "90%"}}/>
+                      <img alt="machine" src={machineTypes[m.type]} style={{width: "90%"}}/>
                     </Grid>
                     <Grid item xs={8}>
                       <Typography component="p">
@@ -117,7 +116,7 @@ class MyReservations extends Component {
             {this.state.currentTab === 0 && <MachineList machines={JSON.parse(localStorage.getItem("reservations"))}/>}
             {this.state.currentTab === 1 &&
               <div style={{paddingTop: 3}}>
-                <img onClick={() => this.setState({dialogOpen: true})} src={floorMap} width="100%"/>
+                <img onClick={() => this.setState({dialogOpen: true})} alt="ss" src={floorMap} width="100%"/>
               </div>}
           </Grid>
         </Grid>

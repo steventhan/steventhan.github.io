@@ -9,13 +9,11 @@ import {
   Toolbar,
   Typography,
   IconButton,
-  Button,
-  SvgIcon,
   Badge,
   Divider,
   Popover,
  } from "material-ui";
-import List, {ListItem, ListItemIcon, ListItemText} from "material-ui/List";
+import {ListItem, ListItemIcon, ListItemText} from "material-ui/List";
 import { withStyles } from "material-ui/styles";
 import MenuIcon from 'material-ui-icons/Menu';
 import { Dashboard, Assignment, Settings, Person, Notifications } from 'material-ui-icons';
@@ -46,7 +44,7 @@ const titles = {
 
 const links = [
   {path: "/", name: "Dashboard", icon: <Dashboard />},
-  {path: "/reserve", name: "Reserve", icon: <img src={treadmill} />},
+  {path: "/reserve", name: "Reserve", icon: <img alt="ss" src={treadmill} />},
   {path: "/my-reservations", name: "My reservations", icon: <Assignment />},
   {path: "/settings", name: "Settings", icon: <Settings />},
   {path: "/membership", name: "Membership", icon: <Person />},

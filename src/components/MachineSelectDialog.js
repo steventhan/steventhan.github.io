@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars*/
 import React, { Component } from 'react';
 import { Divider, InputAdornment, Input, InputLabel,
   Button, Typography, Grid, Radio, TextField, FormControlLabel } from 'material-ui';
@@ -41,7 +42,7 @@ class MachineSelectDialog extends Component {
         <DialogContent>
           <Grid container>
             <Grid item xs={4}>
-              <img src={machineTypes[this.props.machine.type]} style={{width: "100%"}}/>
+              <img alt="ss" src={machineTypes[this.props.machine.type]} style={{width: "100%"}}/>
             </Grid>
             <Grid item xs={8}>
               <Typography component="p">

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars*/
 import React, { Component } from "react";
 import { AppBar, Card, CardContent, Typography,
    Grid, Paper, List, ListItem, ListItemText,
@@ -90,7 +91,7 @@ class Reserve extends Component {
                         <CardContent>
                           <Grid container spacing={0}>
                             <Grid item xs={4}>
-                              <img src={machineTypes[m.type]} style={{width: "90%"}}/>
+                              <img src={machineTypes[m.type]} alt="ss" style={{width: "90%"}}/>
                             </Grid>
                             <Grid item xs={8}>
                               <Typography component="p">
@@ -115,7 +116,7 @@ class Reserve extends Component {
               </List>}
             {this.state.currentTab === 1 &&
               <div style={{paddingTop: 3}}>
-                <img onClick={() => this.setState({dialogOpen: true})} src={floorMap} width="100%"/>
+                <img onClick={() => this.setState({dialogOpen: true})} alt="ss" src={floorMap} width="100%"/>
               </div>}
           </Grid>
         </Grid>

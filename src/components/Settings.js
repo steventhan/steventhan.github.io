@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars*/
 import React, { Component } from "react";
 import { Grid } from "material-ui";
 
@@ -5,7 +6,7 @@ import { Grid } from "material-ui";
 class Settings extends Component {
   render() {
     return (
-      <div>Settings</div>
+      <Grid>Settings</Grid>
     )
   }
 }
