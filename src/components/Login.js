@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars*/
+
 import React, { Component } from 'react';
 import {Container, Form, Header } from 'semantic-ui-react';
 import { Divider, InputAdornment, Input, InputLabel,
