@@ -112,7 +112,8 @@ class MachineSelectDialog extends Component {
             let revs = JSON.parse(localStorage.getItem("reservations"));
             revs.push(this.props.machine);
             localStorage.setItem("reservations", JSON.stringify(revs));
-            return this.props.handleDialogClose(e);
+            this.props.handleDialogClose(e);
+            this.props.sendSnackbarMsg("Reserved", {"label": "View"});
           }} variant="raised" color="primary" autoFocus>
             Reserve
           </Button>
