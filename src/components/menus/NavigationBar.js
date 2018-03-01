@@ -5,8 +5,10 @@ import { withRouter } from "react-router";
 
 import {
   AppBar,
+  Avatar,
   Drawer,
   Toolbar,
+  Grid,
   Typography,
   IconButton,
   Badge,
@@ -17,7 +19,9 @@ import {ListItem, ListItemIcon, ListItemText} from "material-ui/List";
 import { withStyles } from "material-ui/styles";
 import MenuIcon from 'material-ui-icons/Menu';
 import { Dashboard, Assignment, Settings, Person, Notifications } from 'material-ui-icons';
-import treadmill from "../../treadmill.svg"
+import treadmill from "../../treadmill.svg";
+import heisenberg from "../../heisenberg.jpg";
+import qrcode from "../../qrcode.png";
 
 const styles = {
   root: {
@@ -50,6 +54,34 @@ const links = [
   {path: "/membership", name: "Membership", icon: <Person />},
 ]
 
+class UserProfile extends Component {
+  render = () => {
+    return (
+      <Grid container justify="center" spacing={0} style={{marginTop: "10%", marginBottom: "5%"}}>
+        <Grid item>
+          <Avatar alt="heisenberg" style={{width: 100, height: 100}} src={heisenberg} />
+          <Typography style={{paddingLeft: 10, paddingTop: 10}} variant="body1">Walter White</Typography>
+        </Grid>
+      </Grid>
+    );
+  }
+
+}
+
+
+class QRCode extends Component {
+  render = () => {
+    return (
+      <Grid container justify="center" spacing={0} style={{marginTop: "20%"}}>
+        <Grid item>
+          <img alt="qr" style={{width: 100, height: 100}} src={qrcode} />
+          <Typography style={{paddingLeft: 5}} variant="body1">Your QR code</Typography>
+        </Grid>
+      </Grid>
+    );
+  }
+
+}
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -103,6 +135,7 @@ class NavigationBar extends Component {
           open={this.state.drawerOpen}
           onClose={this.toggleDrawer}
           onClick={this.toggleDrawer}>
+          <UserProfile />
           <Divider />
           {links.map((l, i) => {
             return (
@@ -115,6 +148,7 @@ class NavigationBar extends Component {
             )
           })}
           <Divider />
+          <QRCode />
         </Drawer>
         <AppBar className={classes.root}>
           <Toolbar>
