@@ -20,7 +20,6 @@ class MachineSelectDialog extends Component {
   };
 
   handleStartChange = (e) => {
-    console.log(this.state.start);
     this.setState({start: e.target.value});
   }
 
@@ -38,7 +37,7 @@ class MachineSelectDialog extends Component {
             <strong>Machine Information</strong>
         </DialogTitle>
         <DialogContent>
-          <Grid container>
+          <Grid container justify="center">
             <Grid item xs={4}>
               <img alt="ss" src={machineTypes[this.props.machine.type]} style={{width: "100%"}}/>
             </Grid>
@@ -57,7 +56,7 @@ class MachineSelectDialog extends Component {
               </Typography>
             </Grid>
 
-            <Grid container>
+            <Grid container justify="center">
               <Grid item xs={12}>
                 <Typography variant="subheading"><strong>Description</strong></Typography>
                 <Divider/>
@@ -69,7 +68,7 @@ class MachineSelectDialog extends Component {
             </Grid>
 
             <Grid style={{marginTop: 12}} container justify="center">
-              <Grid item xs={10}>
+              <Grid item xs={9}>
                 <FormControlLabel
                   control={
                     <Radio
@@ -94,23 +93,20 @@ class MachineSelectDialog extends Component {
                   onClick={() => this.setState({start: "other"})}
                   disabled={this.state.start === "other" ? false : true}
                   id="time" type="time" />
-              </Grid>
-            </Grid>
-            <Grid container justify="center" alignContent="center">
-              <Grid item xs={10}>
                 <InputLabel htmlFor="duration">Duration</InputLabel>
+                <br/>
                 <Input
+                  style={{maxWidth: 80}}
                   value={20}
                   endAdornment={<InputAdornment position="end">minutes</InputAdornment>}
                 />
               </Grid>
             </Grid>
           </Grid>
-
         </DialogContent>
         <DialogActions>
           <Button onClick={this.props.handleDialogClose} variant="raised" color="default">
-            Cancel
+            Discard
           </Button>
           <Button onClick={(e) => {
             let revs = JSON.parse(localStorage.getItem("reservations"));
