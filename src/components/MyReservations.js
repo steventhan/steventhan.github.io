@@ -1,11 +1,9 @@
-/* eslint-disable no-unused-vars*/
 import React, { Component } from "react";
 import { AppBar, Card, CardContent, Typography,
-   Grid, List, ListItem, ListItemText,
-   Tabs, Tab, TabContainer, Button, MenuItem, Select } from "material-ui";
+   Grid, List, Tabs, Tab, Button, MenuItem, Select } from "material-ui";
 import ReservationModifyDialog from "./ReservationModifyDialog";
 import { machines, machineTypes} from "../fakeData";
-import floorMap from "../floor.png"
+
 
 class MachineList extends Component {
   render = () => {

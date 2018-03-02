@@ -1,12 +1,9 @@
-/* eslint-disable no-unused-vars*/
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Divider, InputAdornment, Input, InputLabel, GridList, GridListTile, GridListTileBar,
-  Button, ButtonBase, Typography, Grid, Radio, TextField, FormControlLabel } from 'material-ui';
+import { GridList, GridListTile, GridListTileBar, Button } from 'material-ui';
 import Dialog, {
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';

@@ -1,10 +1,7 @@
-/* eslint-disable no-unused-vars*/
 import React, { Component } from "react";
 import { AppBar, Card, CardContent, Typography,
-   Grid, Paper, List, ListItem, ListItemText,
-   Tabs, Tab, TabContainer, Button, MenuItem, Select } from "material-ui";
+   Grid, List, Tabs, Tab, Button, MenuItem, Select } from "material-ui";
 import { withStyles } from "material-ui/styles";
-import { FileUpload } from "material-ui-icons";
 import MachineSelectDialog from "./MachineSelectDialog";
 import { machines, machineTypes, evalStatus } from "../fakeData";
 import floorMap from "../floor.png"
@@ -42,7 +39,6 @@ class Reserve extends Component {
   }
 
   render() {
-    const classes = this.props.classes
     return (
       <div>
         <AppBar style={{marginTop: 55}} position="fixed" color="default">

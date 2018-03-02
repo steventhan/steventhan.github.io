@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars*/
-
 import React, { Component } from "react";
 import { withStyles } from "material-ui/styles";
-import { Grid, Divider, List, ListItem, ListItemIcon, ListItemText, Icon, Paper, Typography } from "material-ui";
-import { KeyboardArrowRight, InfoOutline, Announcement } from "material-ui-icons";
+import { Grid, Divider, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from "material-ui";
+import { InfoOutline, Announcement } from "material-ui-icons";
 
 const statuses = [
   "Machines in used: 62/100",
