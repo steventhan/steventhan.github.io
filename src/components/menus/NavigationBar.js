@@ -1,29 +1,13 @@
-/* eslint-disable no-unused-vars*/
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 
-import {
-  AppBar,
-  Avatar,
-  Button,
-  Drawer,
-  Toolbar,
-  Grid,
-  Typography,
-  Snackbar,
-  IconButton,
-  Badge,
-  Divider,
-  Popover,
- } from "material-ui";
+import { AppBar, Avatar, Drawer, Toolbar, Grid, Typography, IconButton, Badge, Divider } from "material-ui";
 import {ListItem, ListItemIcon, ListItemText} from "material-ui/List";
 import { withStyles } from "material-ui/styles";
 import MenuIcon from 'material-ui-icons/Menu';
-import { Dashboard, Assignment, Settings, Person, Notifications } from 'material-ui-icons';
+import { Dashboard, Assignment, Settings, Person, Notifications, ExitToApp } from 'material-ui-icons';
 
-
-import FloatingButtonDialog from "./FloatingButtonDialog";
 import treadmill from "../../treadmill.svg";
 import heisenberg from "../../heisenberg.jpg";
 import qrcode from "../../qrcode.png";
@@ -59,13 +43,12 @@ const titles = {
 }
 
 const links = [
-
   {path: "/dashboard", name: "Dashboard", icon: <Dashboard />},
   {path: "/reserve", name: "Reserve", icon: <img alt="ss" src={treadmill} />},
   {path: "/my-reservations", name: "My reservations", icon: <Assignment />},
   {path: "/settings", name: "Settings", icon: <Settings />},
   {path: "/membership", name: "Membership", icon: <Person />},
-   {path: "/", name: "Logout", icon: <Person />},
+  {path: "/", name: "Logout", icon: <ExitToApp />},
 ]
 
 class UserProfile extends Component {
@@ -79,7 +62,7 @@ class UserProfile extends Component {
         spacing={0}>
         <Grid item style={{paddingTop: "12%", paddingBottom: "10%"}}>
           <Avatar alt="heisenberg" style={{width: 100, height: 100}} src={heisenberg} />
-          <Typography style={{paddingLeft: 10}} variant="body1">Walter White</Typography>
+          <Typography align="center" variant="body1">Walter White</Typography>
         </Grid>
       </Grid>
     );
