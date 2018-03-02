@@ -1,11 +1,9 @@
-/* eslint-disable no-unused-vars*/
 import React, { Component } from 'react';
 import { Divider, InputAdornment, Input, InputLabel,
   Button, Typography, Grid, Radio, TextField, FormControlLabel } from 'material-ui';
 import Dialog, {
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
@@ -86,7 +84,7 @@ class ReservationModifyDialog extends Component {
             </Grid>
 
             <Grid style={{marginTop: 12}} container justify="center">
-              <Grid item xs={9}>
+              <Grid item xs={10}>
                 <FormControlLabel
                   control={
                     <Radio
